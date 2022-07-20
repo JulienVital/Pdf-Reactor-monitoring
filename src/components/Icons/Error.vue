@@ -1,0 +1,9 @@
+<template>
+    <i class="fa-solid fa-triangle-exclamation"></i>`
+</template>
+
+<script setup>
+
+
+
+</script>
