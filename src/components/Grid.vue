@@ -11,9 +11,7 @@ const sortKey = ref('')
 const sortOrders = ref(
   props.columns.reduce((o, key) => ((o[key.value] = 1), o), {})
 )
-let thisrender = computed((key, entry) => {
-  return key.value(entry)
-})
+
 const filteredData = computed(() => {
   let { data, filterKey } = props
   if (filterKey) {
@@ -56,6 +54,7 @@ function capitalize(str) {
           </span>
         </th>
         <th>Success</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
@@ -66,6 +65,11 @@ function capitalize(str) {
         <td>
           <i v-if="entry.error== undefined" class="fa-solid fa-check"></i>
           <i v-else class="fa-solid fa-triangle-exclamation"></i>
+        </td>
+        <td>
+          <router-link class="event-link" :to="{ name: 'HystoryDetails', params: { id: entry.documentId } }">
+            <i class="fa-solid fa-info-circle"></i>
+          </router-link>
         </td>
       </tr>
     </tbody>

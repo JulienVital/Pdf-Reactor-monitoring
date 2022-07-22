@@ -70,9 +70,6 @@ let { documents } = storeToRefs(historyStore);
 // const store = useStore();
 onMounted(() => {
     historyStore.getInfos();
-    // localStorage.test = JSON.stringify({
-    //     documents: documents,
-    // });
 });
 
 const saveTest = () => {

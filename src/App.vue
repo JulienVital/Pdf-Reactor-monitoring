@@ -10,6 +10,14 @@ body {
   padding:0;
   font-family: 'Nunito Sans', sans-serif;
 }
+a {
+  color :rgb(172, 72, 15);
+}
+ a:hover{
+  color :rgb(92, 37, 5);
+}
+
+
 </style>
 
 <script>

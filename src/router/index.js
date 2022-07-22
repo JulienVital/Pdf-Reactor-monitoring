@@ -30,6 +30,13 @@ const routes = [
 
     component: () => import("@/pages/History.vue"),
   },
+  {
+    path: '/history/:id',
+    name: 'HystoryDetails',
+    props: true,
+    component: () => import("@/pages/HistoryDetails.vue"),
+
+  },
 ];
 
 const router = createRouter({

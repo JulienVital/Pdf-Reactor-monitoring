@@ -14,21 +14,13 @@ export const useHistoryStore = defineStore("History Store", {
   },
   actions: {
     async getInfos() {
-      // setTimeout(() => {
-      //   this = JSON.parse(localStorage.history);
-      // }, 4000);
-      // if (!config.getConfig()) {
-      //   return;
-      // }
-      // if (this.date != "") {
-      //   return;
-      // }
-      const data = await History.getHistory();
-      data.documents.forEach(async (element) => {
-          this.documents.push(element);
 
+      if (this.documents.length > 0) {
+        return;
       }
-      );
+      const data = await History.getHistory();
+      this.documents = data.documents
+      this.date = data.date;
       // console.log(data);
       // data.forEach(async (element) => {
       //   console.log("nouvelle boucle");
@@ -70,5 +62,6 @@ export const useHistoryStore = defineStore("History Store", {
   },
   getters: {
     lastUpdate: (state) => LastUpdate.from(state.date),
+    getDocumentByid: (state) => (id) => state.documents.find(doc => doc.documentId === id)
   },
 });
