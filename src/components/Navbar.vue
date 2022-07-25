@@ -38,7 +38,7 @@ nav {
     background-color: #FFF;
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     transition: all 500ms;

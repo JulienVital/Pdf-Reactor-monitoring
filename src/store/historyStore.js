@@ -62,6 +62,20 @@ export const useHistoryStore = defineStore("History Store", {
   },
   getters: {
     lastUpdate: (state) => LastUpdate.from(state.date),
-    getDocumentByid: (state) => (id) => state.documents.find(doc => doc.documentId === id)
+    getDocumentByid: (state) => (id) => {
+      if (state.documents.length === 0) {
+        return ;
+      }
+      console.log('here');
+
+      const documentInState = state.documents.find(doc => doc.documentId === id);
+      if (documentInState) {
+        return documentInState;
+      } else {
+        
+        const result = History.getDocumentInfos(id);
+        console.log(result);
+      }
+    }
   },
 });
