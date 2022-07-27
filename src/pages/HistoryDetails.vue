@@ -1,15 +1,16 @@
 <template>
-    <div class="wrapper-history">
+    <div class="wrapper-history"  v-if="document">
         <a href="#" @click="$router.back()"><i class="fa-solid fa-angles-left" /> Return</a>
-        <div class="large-card" v-if="document">
+        <div class="large-card">
             <h2>{{document.conversionName}}</h2>
+            <p>At {{ fullDate }}</p>
             <p>Id : {{document.documentId}}</p>
             <p v-if="document.error" class="error">Error : {{document.error}}</p>
             <p>Type : {{document.contentType}}</p>
             <p>Time to render : {{timeElapse}}seconds</p>
-            <p>Pages :{{document.numberOfPagesLiteral}}</p>
-            <p>At {{ fullDate }}</p>
+            <p>Pages : {{document.numberOfPagesLiteral}}</p>
         </div>
+        <Logs :logs="document.log"/>
     </div>
 </template>
 
@@ -17,12 +18,13 @@
 import { onBeforeMount, computed } from 'vue';
 import { useHistoryStore } from '@/store/historyStore';
 import { useConfigStore } from '@/store/configStore.js';
+import Logs from '@/components/Logs.vue';
 const historyStore = useHistoryStore();
 const config = useConfigStore();
 onBeforeMount(() => {
     config.getConfig();
     historyStore.getInfos();
-
+    window.scrollTo(0,0);
 });
 const timeElapse = computed(() => {
     return (document.value.endDate - document.value.startDate) / 1000 
@@ -43,6 +45,12 @@ const props = defineProps({
 </script>
 
 <style scoped>
+
+pre{
+    max-width:800px;
+    white-space: pre-wrap;
+
+}
 .wrapper-history{
     margin: 30px auto;
     display: flex;

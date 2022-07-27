@@ -61,7 +61,6 @@ const gridColumns = [
     // }
 
 ]
-
 const config = useConfigStore();
 const historyStore = useHistoryStore();
 

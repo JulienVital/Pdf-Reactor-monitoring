@@ -16,11 +16,12 @@ export const useHistoryStore = defineStore("History Store", {
     async getInfos() {
 
       if (this.documents.length > 0) {
-        return;
+        return true;
       }
       const data = await History.getHistory();
       this.documents = data.documents
       this.date = data.date;
+      return true;
       // console.log(data);
       // data.forEach(async (element) => {
       //   console.log("nouvelle boucle");
@@ -64,17 +65,15 @@ export const useHistoryStore = defineStore("History Store", {
     lastUpdate: (state) => LastUpdate.from(state.date),
     getDocumentByid: (state) => (id) => {
       if (state.documents.length === 0) {
-        return ;
+        return;
       }
-      console.log('here');
 
       const documentInState = state.documents.find(doc => doc.documentId === id);
       if (documentInState) {
         return documentInState;
       } else {
-        
+
         const result = History.getDocumentInfos(id);
-        console.log(result);
       }
     }
   },
